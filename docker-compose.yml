@@ -7,9 +7,9 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - PORT=5001
-      - MONGO_URI=mongodb://mongo:27017/smart-leads
-      - JWT_SECRET=supersecretjwtkey
+      - PORT=${PORT:-5001}
+      - MONGO_URI=${MONGO_URI:-mongodb://mongo:27017/smart-leads}
+      - JWT_SECRET=${JWT_SECRET:-supersecretjwtkey}
     depends_on:
       - mongo
     volumes:
@@ -22,7 +22,7 @@ services:
     ports:
       - "5173:5173"
     environment:
-      - VITE_API_URL=http://localhost:5001/api
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:5001/api}
     volumes:
       - ./frontend:/app
       - /app/node_modules
